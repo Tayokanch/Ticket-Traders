@@ -7484,14 +7484,46 @@ const cities = [
   },
 ];
 
+const INITIAL_STATE = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  Ticket_From: "",
+  TickteT_To: "",
+};
+
 function SellerForm() {
   const sortedCities = cities
     .slice()
     .sort((a, b) => a.city.localeCompare(b.city));
 
+  const [form, setForm] = useState(INITIAL_STATE);
+  const [formSubmissions, setFormSubmissions] = useState([]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value });
+    {
+      /* The name is in square bracket because we are each keys of the Initail State  */
+    }
+    {
+      /* The value here is different from what we have in the option this value, is the input value itself */
+    }
+  };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    setFormSubmissions([...formSubmissions, form]);
+    setForm(INITIAL_STATE);
+  };
+
+  useEffect(() => {
+    console.log(formSubmissions);
+  }, [formSubmissions]);
+
   const renderCityOptions = () => {
-    return sortedCities.map((city) => (
-      <option value={city.city} key={city.city}>
+    return sortedCities.map((city, index) => (
+      <option value={city.city} key={index}>
         {city.city}
       </option>
     ));
@@ -7499,51 +7531,91 @@ function SellerForm() {
 
   return (
     <section className="form-section">
-      <form>
+      <form onSubmit={submitForm}>
         <h3>Post a Ticket</h3>
         <div>
           <label>
             {" "}
             FirstName:
-            <input type="text" />
+            <input
+              type="text"
+              name="firstName"
+              value={form.firstName}
+              onChange={(event) => handleChange(event)}
+            />
           </label>
         </div>
         <div>
           <label>
             {" "}
             LastName:
-            <input type="text" />
+            <input
+              type="text"
+              name="lastName"
+              value={form.lastName}
+              onChange={(event) => handleChange(event)}
+            />
           </label>
         </div>
         <div>
           <label>
             {" "}
             Contact:
-            <input type="email" placeholder="Email" />
+            <input
+              onChange={(event) => handleChange(event)}
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={form.email}
+            />
           </label>
         </div>
 
         <div>
-          <select name="ticketFrom" id="ticketFrom">
-            {" "}
-            Ticket from
+          <label>Ticket from</label>
+          <select
+            name="Ticket_From"
+            onChange={(event) => handleChange(event)}
+            value={form.ticket_Location}
+          >
             <option value="" disabled selected>
               Ticket From
             </option>
-            {renderCityOptions()}
+            {sortedCities.map((city, index) => (
+              <option value={city.city} key={index}>
+                {city.city}
+              </option>
+            ))}
           </select>
         </div>
 
         <div>
-          <select name="Destination" id="Destination">
-            {" "}
-            Destination
+          <label>Ticket To</label>
+          <select
+            name="Ticket_To"
+            onChange={(event) => handleChange(event)}
+            value={form.ticket_Destination}
+          >
             <option value="" disabled selected>
-              Destination
+              Ticket To
             </option>
-            {renderCityOptions()}
+            {sortedCities.map((city, index) => (
+              <option value={city.city} key={index}>
+                {city.city}
+              </option>
+            ))}
           </select>
         </div>
+
+        <div>
+          <label>
+            {" "}
+            Image:
+            <input type="file" />
+          </label>
+        </div>
+
+        <button>Post</button>
       </form>
     </section>
   );
