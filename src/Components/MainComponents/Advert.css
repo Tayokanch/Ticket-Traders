@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Anton&family=Bebas+Neue&family=Black+Ops+One&family=Bungee&family=Crimson+Pro:wght@900&family=Lilita+One&family=Press+Start+2P&family=Rajdhani&family=Roboto&family=Slabo+27px&display=swap');
+
+main .main-advert{
+    width: 100%;
+    display: grid;
+    place-items: center;
+
+}
+
+main .main-advert > p{
+    font-family: 'Black Ops One';
+    color: azure;
+    text-align:center;
+    text-shadow: 5px 5px 5px black;
+    font-size: 1.5rem;
+    padding: 0 15px;
+    
+}
+
+main .main-advert > p > span{
+    color: darkcyan;
+    font-size: 2rem;
+    
+}
+
+
+main >div:last-of-type{
+    width: 100%;
+    background-color: green;
+}
