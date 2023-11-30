@@ -9,6 +9,7 @@ import BuyTicket from "./Components/MainComponents/BuyTicket";
 import { createContext } from "react";
 import AllTickets from "./Components/MainComponents/AllTickets";
 import MatchedTickets from "./Components/MainComponents/MatchedTickets";
+import ChatSeller from "./Components/MainComponents/ChatSeller";
 
 const formContext = createContext();
 
@@ -71,6 +72,8 @@ function App() {
             <Route path="/purchase" element={<BuyTicket />}></Route>
             <Route path="/Alltickets" element={<AllTickets />}></Route>
             <Route path="/AvailableTickets" element={<MatchedTickets />}></Route>
+            <Route path="/chat/:id" element={<ChatSeller />}></Route>
+
 
           </Routes>
         </main>

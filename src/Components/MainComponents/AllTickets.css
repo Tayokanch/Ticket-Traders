@@ -84,3 +84,11 @@ button {
 button:hover {
   background-color: #2980b9;
 }
+
+
+#notice{
+  font-size: 2rem;
+  color: black;
+  padding: 20px;
+  margin: 30px;
+}

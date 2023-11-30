@@ -2,9 +2,15 @@ import React from "react";
 import { useContext } from "react";
 import { formContext } from "../../App";
 import "./AllTickets.css";
+import { useNavigate } from "react-router-dom";
 
 function AllTickets() {
   const { formSubmissions } = useContext(formContext);
+  const navigate = useNavigate()
+
+  const handleChat = (profile)=>{
+      navigate(`/chat/${profile.id}`,{state: {result: profile}})
+  }
 
   return (
     <section className="main-all-tickets">
@@ -36,7 +42,7 @@ function AllTickets() {
                     <td>Available</td>
                     <td>{`£${formSubmission.price}`}</td>
                     <td>
-                      <button onClick={() => handleChatClick(formSubmission)}>
+                      <button onClick={() => handleChat(formSubmission)}>
                         Chat
                       </button>
                     </td>
