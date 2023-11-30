@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import trainbg from "./assets/train2.jpeg";
@@ -8,11 +8,12 @@ import PostTicket from "./Components/MainComponents/PostTicket";
 import BuyTicket from "./Components/MainComponents/BuyTicket";
 import { createContext } from "react";
 import AllTickets from "./Components/MainComponents/AllTickets";
+import MatchedTickets from "./Components/MainComponents/MatchedTickets";
 
 const formContext = createContext();
 
 function App() {
-  const [formSubmissions, setFormSubmissions] = useState([
+  const [allTickets, setAllTickets] = useState([
     {
       firstName: "Tayo",
       lastName: "Quadri",
@@ -43,7 +44,12 @@ function App() {
       id: 3,
     },
   ]);
+  const [formSubmissions, setFormSubmissions] = useState(allTickets);
+  const [allMatchedTicket, setAllMatchedTicket] = useState([]);
 
+  useEffect(() => {
+    setFormSubmissions(allTickets);
+  }, [allTickets]);
   return (
     <>
       <header>
@@ -53,6 +59,10 @@ function App() {
         value={{
           formSubmissions,
           setFormSubmissions,
+          allTickets,
+          setAllTickets,
+          allMatchedTicket,
+          setAllMatchedTicket,
         }}
       >
         <main>
@@ -60,6 +70,8 @@ function App() {
             <Route path="/" element={<PostTicket />}></Route>
             <Route path="/purchase" element={<BuyTicket />}></Route>
             <Route path="/Alltickets" element={<AllTickets />}></Route>
+            <Route path="/AvailableTickets" element={<MatchedTickets />}></Route>
+
           </Routes>
         </main>
       </formContext.Provider>

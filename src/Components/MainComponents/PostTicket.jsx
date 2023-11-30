@@ -19,7 +19,7 @@ const INITIAL_STATE = {
 
 function PostTicket() {
   const navigate = useNavigate();
-  const { formSubmissions, setFormSubmissions } = useContext(formContext);
+  const { formSubmissions, setFormSubmissions, allTickets, setAllTickets } = useContext(formContext);
 
   const sortedCities = cities
     .slice()
@@ -37,15 +37,16 @@ function PostTicket() {
     e.preventDefault();
 
     const newsubmission = { ...form, id };
-    const updatedFormdata = [...formSubmissions, newsubmission];
-    setFormSubmissions(updatedFormdata);
+    const updatedFormdata = [...allTickets, newsubmission];
+    setAllTickets(updatedFormdata);
     setForm(INITIAL_STATE);
     navigate("/Alltickets");
 
-    console.log("This is the formSubmissions:", formSubmissions);
-    //This is not showing the existing Initail data
-    //How can i add id, so as to be able to delete post or Go to a particular post
+    console.log("This is the formSubmissions:", allTickets);
+   
   };
+
+
 
   const renderCityOptions = () => {
     return sortedCities.map((city, index) => (

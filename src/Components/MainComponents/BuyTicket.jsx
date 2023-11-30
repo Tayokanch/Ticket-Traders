@@ -4,6 +4,9 @@ import { faRepeat } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./BuyTicket.css";
 import Advert from "./Advert";
+import { useContext } from "react";
+import { formContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_STATE = {
   location: "",
@@ -12,16 +15,34 @@ const INITIAL_STATE = {
 
 function BuyTicket() {
   const [buyerDetails, setBuyerDetails] = useState(INITIAL_STATE);
+  const {
+    formSubmissions,
+    setFormSubmissions,
+    allTickets,
+    allMatchedTicket,
+    setAllMatchedTicket,
+  } = useContext(formContext);
+
+  const navigate = useNavigate();
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log( 'this is buyerDetails',buyerDetails);
+    console.log("this is buyerDetails", buyerDetails);
     setBuyerDetails(INITIAL_STATE);
+
+    const matchTicket = allTickets?.filter((allTicket) => {
+      return (
+        allTicket?.ticket_From.toLowerCase() ===
+          buyerDetails?.location.toLowerCase() &&
+        allTicket?.ticket_To.toLowerCase() ===
+          buyerDetails?.destination.toLowerCase()
+      );
+    });
+
+    console.log("This is matchedTickets", matchTicket);
+    setAllMatchedTicket(matchTicket);
+    navigate("/AvailableTickets");
   };
-
-  
-
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
