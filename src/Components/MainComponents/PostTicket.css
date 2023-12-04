@@ -40,3 +40,22 @@
     width: 100%;
     padding: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+    .main-post-section{
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        
+    }
+    .main-post-section > section:first-of-type{
+            display: none;
+    }
+    .main-post-section > section:last-of-type{
+        padding: 20px;
+        overflow: hidden;
+}
+
+   
+  }
