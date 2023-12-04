@@ -9,8 +9,8 @@ import { formContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 const INITIAL_STATE = {
-  location: "",
-  destination: "",
+  ticket_From: "",
+  ticket_To: "",
 };
 
 function BuyTicket() {
@@ -33,9 +33,9 @@ function BuyTicket() {
     const matchTicket = allTickets?.filter((allTicket) => {
       return (
         allTicket?.ticket_From.toLowerCase() ===
-          buyerDetails?.location.toLowerCase() &&
+          buyerDetails?.ticket_From.toLowerCase() &&
         allTicket?.ticket_To.toLowerCase() ===
-          buyerDetails?.destination.toLowerCase()
+          buyerDetails?.ticket_To.toLowerCase()
       );
     });
 
@@ -61,8 +61,8 @@ function BuyTicket() {
               <input
                 type="text"
                 placeholder="From"
-                value={buyerDetails.location}
-                name="location"
+                value={buyerDetails.ticket_From}
+                name="ticket_From"
                 onChange={(e) => handleChange(e)}
               />
             </label>
@@ -74,8 +74,8 @@ function BuyTicket() {
               <input
                 type="text"
                 placeholder="To"
-                value={buyerDetails.destination}
-                name="destination"
+                value={buyerDetails.ticket_To}
+                name="ticket_To"
                 onChange={(e) => handleChange(e)}
               />
             </label>

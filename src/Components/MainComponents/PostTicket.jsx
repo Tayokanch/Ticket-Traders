@@ -7,6 +7,7 @@ import cities from "../../data.js";
 import { useNavigate } from "react-router-dom";
 import Advert from "./Advert.jsx";
 import { nanoid } from "nanoid";
+import CustomSelect from "./customSelect";
 
 const INITIAL_STATE = {
   firstName: "",
@@ -19,13 +20,15 @@ const INITIAL_STATE = {
 
 function PostTicket() {
   const navigate = useNavigate();
-  const { formSubmissions, setFormSubmissions, allTickets, setAllTickets } = useContext(formContext);
+  const { formSubmissions, setFormSubmissions, allTickets, setAllTickets } =
+    useContext(formContext);
 
   const sortedCities = cities
     .slice()
     .sort((a, b) => a.city.localeCompare(b.city));
 
   const [form, setForm] = useState(INITIAL_STATE);
+  const [countries, setCountries] = useState(cities);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,10 +46,7 @@ function PostTicket() {
     navigate("/Alltickets");
 
     console.log("This is the formSubmissions:", allTickets);
-   
   };
-
-
 
   const renderCityOptions = () => {
     return sortedCities.map((city, index) => (
@@ -135,7 +135,10 @@ function PostTicket() {
               ))}
             </select>
           </div>
-
+          <div>
+            <label> custom select:</label>
+            <CustomSelect countries={countries} setCountries={setCountries} />
+          </div>
           <div>
             <label>
               {" "}

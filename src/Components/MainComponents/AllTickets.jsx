@@ -37,8 +37,8 @@ function AllTickets() {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{`${formSubmission.firstName} ${formSubmission.lastName}`}</td>
-                    <td>{formSubmission.ticket_To}</td>
                     <td>{formSubmission.ticket_From}</td>
+                    <td>{formSubmission.ticket_To}</td>
                     <td>Available</td>
                     <td>{`£${formSubmission.price}`}</td>
                     <td>

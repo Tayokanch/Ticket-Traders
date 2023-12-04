@@ -39,7 +39,7 @@ function App() {
       firstName: "Tosin",
       lastName: "Olorundare",
       email: "olorundareT@gmail.com",
-      ticket_From: "Sheffied",
+      ticket_From: "Sheffield",
       ticket_To: "Layland",
       price: 20,
       id: 3,

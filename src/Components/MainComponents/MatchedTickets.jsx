@@ -2,9 +2,15 @@ import React from "react";
 import { useContext } from "react";
 import { formContext } from "../../App";
 import "./AllTickets.css";
+import { useNavigate } from "react-router-dom";
 
 function MatchedTickets() {
   const { allMatchedTicket, setAllMatchedTicket } = useContext(formContext);
+  const navigate = useNavigate();
+
+  const handleChat = (profile) => {
+    navigate(`/chat/${profile.id}`, { state: { result: profile } });
+  };
 
   return (
     <section className="main-all-tickets">
@@ -32,12 +38,12 @@ function MatchedTickets() {
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{`${ticket?.firstName} ${ticket?.lastName}`}</td>
-                      <td>{ticket?.ticket_To}</td>
                       <td>{ticket?.ticket_From}</td>
+                      <td>{ticket?.ticket_To}</td>
                       <td>Available</td>
                       <td>{`£${ticket?.price}`}</td>
                       <td>
-                        <button>Chat</button>
+                        <button onClick={() => handleChat(ticket)}>Chat</button>
                       </td>
                     </tr>
                   ))}
