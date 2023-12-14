@@ -7,7 +7,7 @@ import cities from "../../data.js";
 import { useNavigate } from "react-router-dom";
 import Advert from "./Advert.jsx";
 import { nanoid } from "nanoid";
-import CustomSelect from "./customSelect.jsx";
+import CustomSelect from './CustomSelect'
 
 const INITIAL_STATE = {
   firstName: "",
