@@ -40,8 +40,10 @@ function PostTicket() {
     e.preventDefault();
 
     const newsubmission = { ...form, id };
+
     const updatedFormdata = [...allTickets, newsubmission];
     setAllTickets(updatedFormdata);
+    
     setForm(INITIAL_STATE);
     navigate("/Alltickets");
 
@@ -69,6 +71,7 @@ function PostTicket() {
               <input
                 type="text"
                 name="firstName"
+                placeholder="firstname"
                 value={form.firstName}
                 onChange={(event) => handleChange(event)}
               />
@@ -81,6 +84,7 @@ function PostTicket() {
               <input
                 type="text"
                 name="lastName"
+                placeholder="lastname"
                 value={form.lastName}
                 onChange={(event) => handleChange(event)}
               />
